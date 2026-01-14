@@ -1,6 +1,8 @@
 from abc import abstractmethod, ABC
 from typing import Optional, Any
 
+from videoContext import VideoContext
+
 
 class Handler(ABC):
 
@@ -9,5 +11,5 @@ class Handler(ABC):
     pass
 
   @abstractmethod
-  def handle(self, request : Any):
+  def handle(self, video_context : VideoContext) -> VideoContext:
     pass

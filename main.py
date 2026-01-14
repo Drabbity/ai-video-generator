@@ -1,19 +1,20 @@
+import logging
+
+from logConfig import setup_logging
 from dotenv import dotenv_values
 from moviepy import VideoFileClip
+
+from handlers import *
+from videoContext import VideoContext
 
 config = dotenv_values(".env")
 
 def main():
-  print(config["OPENAI_KEY"])
+  setup_logging("log/VideoGenerator.log", logging.DEBUG)
 
-  video = VideoFileClip("assets/BackGroundFootage.mp4")
-
-  print("Duration:", video.duration)
-  print("FPS:", video.fps)
-  print("Size:", video.size)
-
-  video.close()
-
+  v = LoadVideoHandler("assets/BackGroundFootage.mp4")
+  ctx = v.handle(VideoContext())
+  print(ctx)
 
 if __name__ == "__main__":
   main()

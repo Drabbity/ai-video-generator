@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+from videoContext import VideoContext
 from .handler import Handler
 
 
@@ -12,8 +13,8 @@ class AbstractHandler(Handler):
     return self._next_handler
 
   @abstractmethod
-  def handle(self, request: Any):
+  def handle(self, video_context: VideoContext) -> VideoContext:
     if self._next_handler:
-      return self._next_handler.handle(request)
+      return self._next_handler.handle(video_context)
 
-    return None
+    return video_context
