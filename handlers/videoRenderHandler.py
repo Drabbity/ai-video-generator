@@ -1,4 +1,5 @@
 import logging
+import os
 
 from moviepy import VideoFileClip
 from typing_extensions import override
@@ -18,6 +19,10 @@ class VideoRenderHandler(AbstractHandler):
   @override
   def handle(self, video_context : VideoContext) -> VideoContext:
     try:
+      save_path = os.path.dirname(self.video_write_path)
+      if save_path:
+        os.makedirs(save_path, exist_ok=True)
+
       video_context.clip.write_videofile(filename=self.video_write_path, threads=self.threads, fps=self.fps, codec=self.codec, preset=self.preset)
       logging.info(f"Video written to file. Path: {self.video_write_path}")
 
