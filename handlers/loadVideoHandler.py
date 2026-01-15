@@ -4,7 +4,7 @@ from moviepy import VideoFileClip
 from typing_extensions import override
 
 from handlers import AbstractHandler
-from videoContext import VideoContext
+from Context.videoContext import VideoContext
 
 
 class LoadVideoHandler(AbstractHandler):
@@ -20,5 +20,5 @@ class LoadVideoHandler(AbstractHandler):
 
       return super().handle(video_context)
     except Exception:
-      logging.exception("Couldn't load video '%s'", self.video_path)
+      logging.exception(f"Couldn't load video '{self.video_path}'")
       raise

@@ -1,19 +1,21 @@
 import logging
 
-from logConfig import setup_logging
+from handlers.closeContextHandler import CloseContextHandler
+from logger.logConfig import setup_logging
 from dotenv import dotenv_values
-from moviepy import VideoFileClip
 
 from handlers import *
-from videoContext import VideoContext
+from Context.videoContext import VideoContext
 
 config = dotenv_values(".env")
 
 def main():
   setup_logging("log/VideoGenerator.log", logging.DEBUG)
 
-  v = LoadVideoHandler("assets/BackGroundFootage.mp4")
-  ctx = v.handle(VideoContext())
+  pipeline = LoadVideoHandler("assets/BackGroundFootage.mp4")
+  pipeline.set_next(CloseContextHandler())
+
+  ctx = pipeline.handle(VideoContext())
   print(ctx)
 
 if __name__ == "__main__":
