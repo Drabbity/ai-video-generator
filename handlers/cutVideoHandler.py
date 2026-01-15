@@ -19,7 +19,7 @@ class CutVideoHandler(AbstractHandler):
       if self.clip_start is None:
         self.clip_start = self.__calculate_random_clip_start(video_context.clip, self.clip_duration)
 
-      video_context.clip.subclipped(start_time=self.clip_start, end_time=self.clip_start + self.clip_duration)
+      video_context.clip = video_context.clip.subclipped(start_time=self.clip_start, end_time=self.clip_start + self.clip_duration)
       logging.info("video cut")
 
       return super().handle(video_context)
