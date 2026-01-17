@@ -14,6 +14,6 @@ class CloseContextHandler(AbstractHandler):
     if video_context.clip:
       video_context.clip.close()
 
-      logging.info(f"Closing clip: {video_context.clip}")
+      logging.info(f"Closing clip: {video_context.clip.filename}")
 
     return super().handle(video_context)

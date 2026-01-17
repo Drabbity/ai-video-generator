@@ -24,7 +24,7 @@ class CutVideoHandler(AbstractHandler):
 
       return super().handle(video_context)
     except Exception as error:
-      logging.exception(f"Couldn't cut video '{video_context.clip}': {error}")
+      logging.exception(f"Couldn't cut video '{video_context.clip.filename}': {error}")
       raise
 
   @staticmethod

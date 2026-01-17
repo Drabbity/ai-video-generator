@@ -16,9 +16,9 @@ class LoadVideoHandler(AbstractHandler):
     try:
       clip = VideoFileClip(self.video_path)
       video_context.clip = clip
-      logging.info(f"Loaded video: {self.video_path}")
+      logging.info(f"Loaded video from {self.video_path}")
 
       return super().handle(video_context)
     except Exception:
-      logging.exception(f"Couldn't load video '{self.video_path}'")
+      logging.exception(f"Couldn't load video from '{self.video_path}'")
       raise
